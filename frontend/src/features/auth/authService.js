@@ -30,7 +30,7 @@ const login = async (userData) =>{
   
       return response.data;
     } catch (error) {
-      console.error('Error during user registration:', error);
+      console.error('Error during login :', error);
       throw error;
     }
 }

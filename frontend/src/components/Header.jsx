@@ -12,14 +12,14 @@ function Header() {
     const handleLogout =() =>{
         dispatch(logout())
         dispatch(reset())
-        navigate('/')
+        navigate('/login')
     }
 
 
 return (
     <header className='header'>
         <div className="logo">
-            <Link to='/' > GoalSetter </Link>
+            <Link to='/' > Goal Vault </Link>
         </div>
         <ul>
             { user ?
