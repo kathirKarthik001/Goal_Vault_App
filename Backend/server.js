@@ -4,6 +4,7 @@ const dotenv = require('dotenv').config()
 const { errorMiddleware } = require('./middleware/errorMiddleware')
 const colors = require('colors')
 const connectDB = require('./config/db')
+const cors = require('cors');
 
 // DB connectivity 
 connectDB()
@@ -12,20 +13,25 @@ connectDB()
 const PORT = process.env.PORT || 5000
 const app = express()
 
+// CORS configuration
+app.use(cors({
+    origin: 'https://book-it-mern-app-mk.vercel.app', // Frontend URL (no trailing slash)
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
+    credentials: true, // Allow cookies or credentials 
+  }));
+
+// Handle preflight requests
+app.options('*', cors());
+
+//req - parsers
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
+//routes
 app.use('/api/goals' , require('./routes/goalsRoutes'))
 app.use('/api/users' , require('./routes/userRoutes'))
 
-// Serve frontend
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname ,'../frontend/build')))
-    app.get('*',(req , res) => res.sendFile(path.resolve(__dirname,'../','frontend','build','index.html')) )
-}
-else{
-    app.get('/',(req , res) => res.send('Server running in development'))
-}
+//middlewares
 app.use(errorMiddleware)
 
 app.listen(PORT,()=>{
