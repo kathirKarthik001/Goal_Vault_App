@@ -15,7 +15,7 @@ const app = express()
 
 // CORS configuration
 app.use(cors({
-    origin: 'https://book-it-mern-app-mk.vercel.app', // Frontend URL (no trailing slash)
+    origin: 'https://goal-vault.vercel.app', // Frontend URL (no trailing slash)
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
     credentials: true, // Allow cookies or credentials 
   }));
