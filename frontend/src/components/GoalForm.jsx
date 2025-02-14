@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch} from 'react-redux'
-import {createGoal , reset } from '../features/goals/goalSlice'
+import {createGoal} from '../features/goals/goalSlice'
 
 
 function Goalform() {

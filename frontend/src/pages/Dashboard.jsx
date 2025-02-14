@@ -18,7 +18,7 @@ function Dashboard() {
 
   const {user} = useSelector((state) => state.auth)
 
-  const {goals , isLoading , isError , isSuccess , message} = useSelector((state) => state.goal)
+  const {goals , isLoading , isError, message} = useSelector((state) => state.goal)
 
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function Dashboard() {
     return () => {
       dispatch(reset())      
     }
-  } , [ message ,dispatch, isError ,navigate ] )
+  } , [ message ,dispatch,user, isError ,navigate ] )
 
 
   if(isLoading){
